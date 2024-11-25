@@ -14,11 +14,11 @@ emergency_supplies_price = 5
 
 print("Welcome to my Oregon Trail Game!")
 answer = ""
-while answer.lower() not in ["A", "B", "C"]:
+while answer.lower() not in ['A', 'B', 'C']:
     answer = input("Which career do you want to be? Banker (A), Carpenter (B), or Farmer (C): ")
-if answer.lower() == "Banker from Boston":
+if answer.lower() == 'A':
     mons = 100
-elif answer.lower() == "Carpenter from Ohio":
+elif answer.lower() == 'B':
     mons = 80
 else: 
     mons = 60
@@ -50,5 +50,5 @@ if game_shop.lower() == 'a':
         else:
             print("Not enough money.")
     else: 
-        print("Invalid aount entered. Try again.")
+        print("Invalid amount entered. Try again.")
 
