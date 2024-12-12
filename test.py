@@ -1,3 +1,4 @@
+import random
 party_members = []
 party_health = [10, 10, 10, 10 ]
 miles_remaining = 200
@@ -106,4 +107,11 @@ if health.upper() == 'A':
         party_health[3] += 3
 else:
     print("You are not able to, sorry!")
+
+elif answer.upper() == 'B':
+    if oxen > 0:
+        days = random.randint(15,30)
+    else:
+        days = random.randint(30, 80)
+
         
