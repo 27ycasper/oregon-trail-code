@@ -12,7 +12,7 @@ rations_price = 2
 emergency_supplies_price = 5
 party_dead = False
 dead = 'rip'
-rand_num = ""
+rand_num = 0
 
 
 
@@ -161,31 +161,29 @@ if rand_num == 1:
 
     if emergency_supplies > 0: 
         emergency_supplies -= 1
+    else: 
+        party_health[0] -= 5
+        party_health[1] -= 5
+        party_health[2] -= 5  
+        party_health[3] -= 5
 
-else: 
-    party_health[0] -= 5
-    party_health[1] -= 5
-    party_health[2] -= 5  
-    party_health[3] -= 5
-    elif rand_num == 20:
+elif rand_num == 20:
     party_health[0] += 5
     party_health[1] += 5
     party_health[2] += 5 
     party_health[3] += 5
 else:
-
-if party_health[0] != dead and party_health[0] <= 0:
-    party_health[0] = dead
-if party_health[1] != dead and party_health[1] <= 0:
-    party_health[1] = dead
+    if party_health[0] != dead and party_health[0] <= 0:
+        party_health[0] = dead
+    if party_health[1] != dead and party_health[1] <= 0:
+        party_health[1] = dead
 
 if party_health.count(dead) == 4:
     party_dead = True
 else: 
     if not party_dead:
-print("Surviving members: ")
+        print("Surviving members: ")
 if party_health[0] != dead:
     print("/t" + party_members[0])
 if party_health[1] != dead:
     print("/t" + party_members[1])
-else: 
