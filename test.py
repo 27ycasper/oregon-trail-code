@@ -88,13 +88,13 @@ while mons >= 2:
         break
 
 while miles_remaining > 0 and not party_dead:
-    print("Here are your options: A, B, C, D, E")
-    health = ""
+    print("Here are your options: Eat Rations (A), Ahead Moderate Speed (B), Ahead Full Speed (C), Status Check (D), Exit (E)")
+
+    answer = ""
+    while answer.lower() not in ['a','b','c','d','e']:
+        answer = input("Your choice: ")
     
-    while health.lower() not in ['a','b','c','d','e']:
-        health = input("Response:")
-    
-if health.upper() == 'A':
+if answer.lower() == 'A':
     if rations > 0:
         rations -= 1
     if days_until_winter <= 0:
@@ -134,7 +134,7 @@ miles = random.randint(10,40)
 miles_remaining -= miles
 days_until_winter -= days
 
-if answer.upper == 'C':
+if answer.upper() == 'C':
     if oxen > 0:
         days = random.randint(5,15)
     party_health[0] -= 8
@@ -187,3 +187,4 @@ if party_health[0] != dead:
     print("/t" + party_members[0])
 if party_health[1] != dead:
     print("/t" + party_members[1])
+
