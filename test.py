@@ -13,67 +13,120 @@ emergency_supplies_price = 5
 party_dead = False
 dead = 'rip'
 rand_num = 0
-
+party_size = 4
+new_game = True
 
 
 print("Welcome to my Oregon Trail Game!")
-answer = ""
-while answer.lower() not in ['a', 'b', 'c']:
-    answer = input("Which career do you want to be? Banker (A), Carpenter (B), or Farmer (C): ")
-if answer.lower() == 'a':
-    mons = 100
-elif answer.lower() == 'b':
-    mons = 80
-else: 
-    mons = 60
 
-party_leader = input("What's your party leaders name?: ")
-party_members.append(party_leader)
+files = [f for f in os.listdir('.') if os.path.isfile(f)]
+if '.breakpoints' in files:
+    files.remove('.breakpoint')
+    files.remove('main.py')
+    new_game = False
 
-count = 0
-while count == 0 > 3: 
-    party = input("Enter a party member's name: ")
-    party_members.append([party])
+    if len(files) != 0:
+        answer = ""
+    while answer.lower not in ['a','b']:
+        answer = input("New Game (A) or Load Game (B)")
 
-while mons >= 2:
-    game_shop = input("What would you like to buy? Oxen (A), Rations (B), Emergency Supplies (C), Done(D): ")
+    if answer.lower() == 'b':
+        new_game = False
+
+    else:
+        new_game = True
+    
+
+    for file in files: 
+        print(file)
+    else: 
+        new_game = True
+    answer = ""
+    answer = input("New Game (A) or Load Game (B)")
+    if answer.lower() == 'b':
+        new_game = False
+
+    for file in files:
+        print(file)
+    
+    file_name = ""
+    while file_name not in files:
+        file_name = input("Enter a name for your file.")
+
+    file = open((file_name, 'r'))
+
+party_size = int(file.readline().strip('\n'))
+party_members = file.readline().strip('\n').split()
+party_health = file.readline().strip('\n').split()
+
+for i in range(len(party_health)):
+    if party_health[1].isdigit():
+        party_health[1] = int(party_health[1])
+rations = int(file.readline().strip('\n'))
+oxen = int(file.readline().strip('\n'))
+emergency_supplies = int(file.readline().strip('\n'))
+
+else:
+new_game = True
+
+if new_game:
+    answer = ""
+    while answer.lower() not in ['a', 'b', 'c']:
+        answer = input("Which career do you want to be? Banker (A), Carpenter (B), or Farmer (C): ")
+    if answer.lower() == 'a':
+        mons = 100
+    elif answer.lower() == 'b':
+        mons = 80
+    else: 
+        mons = 60
+
+    party_leader = input("What's your party leaders name?: ")
+    party_members.append(party_leader)
+
+    count = 0
+    while count == 0 > 3: 
+        party = input("Enter a party member's name: ")
+        party_members.append([party])
+
+    while mons >= 2:
+        game_shop = input("What would you like to buy? Oxen (A), Rations (B), Emergency Supplies (C), Done(D): ")
 
 
-    while game_shop.lower() not in ['a', 'b', 'c', 'd']:
-        game_shop = input("What would you like to buy?: ")
+        while game_shop.lower() not in ['a', 'b', 'c', 'd']:
+            game_shop = input("What would you like to buy?: ")
 
-    if game_shop.lower() == 'a':
-        amount = input("How many oxen would you like to buy?: ")
-        if amount.isdigit():
-            amount = int(amount)
-            total = amount * oxen_price
-            if mons >= total:
-                oxen += amount
-                mons -= total
-            else:
-                print("Not enough money.")
-        else: 
-            print("Invalid amount entered. Try again.")
-    if game_shop.lower() == 'd':
-        break
+        if game_shop.lower() == 'a':
+            amount = input("How many oxen would you like to buy?: ")
+            if amount.isdigit():
+                amount = int(amount)
+                total = amount * oxen_price
+                if mons >= total:
+                    oxen += amount
+                    mons -= total
+                else:
+                    print("Not enough money.")
+            else: 
+                print("Invalid amount entered. Try again.")
+        if game_shop.lower() == 'd':
+            break
 
-    if game_shop.lower() == 'b':
-        amount = input("How many Rations would you like to buy?: ")
-        if amount.isdigit():
-            amount = int(amount)
-            total = amount * rations_price
-            if mons >= total:
-                rations += amount
-                mons -= total
-            else:
-                print("Not enough money.")
-        else: 
-            print("Invalid amount entered. Try again.")
-    if game_shop.lower() == 'd':
-        break
+        if game_shop.lower() == 'b':
+            amount = input("How many Rations would you like to buy?: ")
+            if amount.isdigit():
+                amount = int(amount)
+                total = amount * rations_price
+                if mons >= total:
+                    rations += amount
+                    mons -= total
+                else:
+                    print("Not enough money.")
+            else: 
+                print("Invalid amount entered. Try again.")
+        if game_shop.lower() == 'd':
+            break
 
-    if game_shop.lower() == 'c':
-        amount = input("How many Emergency supplies would you like to buy?: ")
+        if game_shop.lower() == 'c':
+            amount = input("How many Emergency supplies would you like to buy?: ")
         if amount.isdigit():
             amount = int(amount)
             total = amount * emergency_supplies_price
@@ -84,8 +137,8 @@ while mons >= 2:
                 print("Not enough money.")
         else: 
             print("Invalid amount entered. Try again.")
-    if game_shop.lower() == 'd':
-        break
+        if game_shop.lower() == 'd':
+            break
 
 while miles_remaining > 0 and not party_dead:
     print("Here are your options: Eat Rations (A), Ahead Moderate Speed (B), Ahead Full Speed (C), Status Check (D), Exit (E)")
