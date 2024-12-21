@@ -1,4 +1,6 @@
 import random
+import time
+import os
 party_members = []
 party_health = [10, 10, 10, 10 ]
 miles_remaining = 200
@@ -65,8 +67,7 @@ for i in range(len(party_health)):
 rations = int(file.readline().strip('\n'))
 oxen = int(file.readline().strip('\n'))
 emergency_supplies = int(file.readline().strip('\n'))
-
-else:
+else: 
 new_game = True
 
 if new_game:
